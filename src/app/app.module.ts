@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http'
+import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 
 @NgModule({
@@ -15,9 +15,15 @@ import {HttpClientModule} from '@angular/common/http'
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, 
+      useClass: IonicRouteStrategy
+     },
+     InAppBrowser
+    ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
